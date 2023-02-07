@@ -1,0 +1,195 @@
+#Program 1
+
+BEGIN
+dbms_output.put_line('Hello World, Welcome to PLSQL');
+END;
+
+
+#Program 2
+
+DECLARE
+    name varchar2(40):='Raja';
+    age number:=28;
+    city varchar(30):='Madhurai';
+
+BEGIN
+
+dbms_output.put_line('Your Name is: '|| name);
+dbms_output.put_line('Your Age is: '|| age);
+dbms_output.put_line('Your City is: '|| city);
+
+END;
+
+
+#Program 3
+
+DECLARE
+
+    name varchar(40):='&name';
+    age number:='&age';
+    
+BEGIN
+
+    age:= (age+2);
+dbms_output.put_line('Your Name is: '|| name);
+dbms_output.put_line('Your Age is: '|| age);
+
+END;
+
+
+#Program 4
+
+CREATE TABLE customer
+(
+    cust_id number(6),
+    cust_name varchar2(30),
+    dob date,
+    mobile number(10),
+    address varchar2(100)
+);
+
+Select * from customer;
+
+BEGIN
+    -- Inserting a new record into the table
+    insert into customer (cust_id, cust_name, dob, mobile, address)
+    values (11223, 'Amuthesh', to_date('20/04/1999', 'dd/mm/yyyy'), 985454, 'Chennai');
+
+Select * from customer;
+
+END;
+
+#Program 5
+
+BEGIN
+    insert into customer2 (cust_id, cust_name, dob, mobile, city)
+    values(123, 'Amuthesh', TO_DATE('21/03/1999', 'dd/mm/yyyy'), 85475, 'Chennai');
+--dmbs_output.put_line('Records inserted');
+
+END;
+
+#Program 6
+
+Declare
+-- Insert a record into a table by user input
+--    sid number(6) PRIMARY KEY,
+--    sname varchar2(30),
+--    dob date,
+--    mobile number(10),
+--    address varchar2(100)
+
+    v_sid number(6) := &sid;
+    v_sname varchar2(30) :='&sname';
+    v_dob DATE :='&dob';
+    v_mobile number(10) := &mob;
+    v_address VARCHAR2(100) := '&address';
+
+BEGIN
+
+INSERT INTO student
+(sid, sname, dob, mobile, address)
+VALUES (v_sid, v_sname, TO_DATE(v_dob, 'dd/mm/yyyy'), v_mobile, v_address);
+commit;
+
+END;
+/
+    
+#Program 7
+-- Delete a record from a table based on a user input - sid
+Declare
+
+      v_sid number(6) := &sid;
+      
+BEGIN
+
+    DELETE FROM student WHERE sid=v_sid;
+    commit;
+    
+END;
+/
+
+
+#Program 8
+
+DECLARE
+--To check if a your is a leap year
+    v_employee_id number:=&v_employee_id;
+    v_hire_year number;
+
+BEGIN
+    
+    select to_number(to_char(hire_date, 'yyyy')) into v_hire_year from employees where employee_id=v_employee_id;
+    dbms_output.put_line('The employee with the id:'||v_employee_id||'has joined the company in '||v_hire_year);
+    if(mod(v_hire_year,4)=0) then
+    dbms_output.put_line('It is a leap year');
+    else 
+    dbms_output.put_line('Not a leap year');
+    end if;
+END;
+/
+
+
+#Program 9
+
+declare
+-- CASE WHEN
+mrk number:= &number;
+
+begin
+    
+    CASE
+    WHEN (mrk > 80 AND mrk <= 100) then
+            dbms_output.put_line('Distinction');
+        WHEN (mrk>60 and mrk <= 80) then
+            dbms_output.put_line('First Class');
+        WHEN mrk>40 and mrk<=60 then
+            dbms_output.put_line('Second Class');
+        else
+            dbms_output.put_line('Fail');    
+    end CASE;
+end;
+
+#Program 10
+
+declare
+-- Loop
+    c number:=0;
+    d number:=&d;
+
+begin
+    
+    LOOP
+    dbms_output.put_line('Count'||c);
+    c:= c+1;
+    exit when c=d;
+    end loop;
+end;
+    
+    
+#Program 11
+
+declare
+-- While Loop
+    c number:=0;
+
+begin
+    while c<=5
+    loop
+        dbms_output.put_line('Hello'||c);
+        c:=c+1;
+    end loop;
+end;
+
+
+#Program 12
+
+declare
+-- for Loop
+    c number;
+
+begin
+    for c in 1..10
+    loop
+        dbms_output.put_line('Hello'||c);
+    end loop;
+end;
