@@ -193,3 +193,135 @@ begin
         dbms_output.put_line('Hello'||c);
     end loop;
 end;
+
+
+# Program 13
+-- Create table with constraints only for numbers
+CREATE TABLE studentmarks(
+    sid number(6) PRIMARY KEY,
+    eng number NOT NULL,
+    tam number NOT NULL,
+    math number NOT NULL,
+    sci number NOT NULL,
+    soc number NOT NULL,
+    
+    
+    CONSTRAINT eng_check
+    CHECK (eng BETWEEN 0 AND 100),
+    CONSTRAINT tam_check
+    CHECK (tam BETWEEN 0 AND 100),
+    CONSTRAINT math_check
+    CHECK (math BETWEEN 0 AND 100),
+    CONSTRAINT sci_check
+    CHECK (sci BETWEEN 0 AND 100),
+    CONSTRAINT soc_check
+    CHECK (soc BETWEEN 0 AND 100)
+    
+);
+
+# Program 13
+-- adding records into the table
+CREATE OR REPLACE PROCEDURE insert_stud_records(sid number, eng number, tam number, math number, sci number, soc number)
+AS
+
+BEGIN
+    INSERT INTO studentmarks (sid, eng, tam, math, sci, soc)
+    values (sid, eng, tam, math, sci, soc);
+END;
+/
+    
+    
+--execute insert_stud_records(sid number, eng number, tam number, math number, sci number, soc number);
+
+execute insert_stud_records(1, 68, 74, 98, 84, 100);
+
+
+#Program 14
+-- Cursor example 1
+
+DECLARE
+    v_first_name varchar(20);
+    v_last_name varchar(20);
+    
+    cursor cust_cur_01 IS SELECT first_name, last_name FROM employees;
+    
+BEGIN
+    OPEN cust_cur_01;
+    LOOP
+        FETCH cust_cur_01 INTO v_first_name, v_last_name;
+        dbms_output.put_line(v_last_name||', '||v_first_name);
+        EXIT WHEN cust_cur_01%NOTFOUND;
+    END LOOP;
+END;
+
+#Program 15
+-- Cursor example 2
+DECLARE
+    v_job_title varchar2(50);
+    cursor sal_cur(v_min_salary number:= 10000) is select job_title from jobs where min_salary > v_min_salary;
+    
+begin
+    open sal_cur;
+    loop
+        fetch sal_cur into v_job_title;
+        dbms_output.put_line(v_job_title);
+        exit when sal_cur%NOTFOUND;
+    end loop;
+    close sal_cur;
+end;
+/
+
+#Program 16
+-- Cursor example 3
+DECLARE
+    v_job_title varchar2(50);
+    cursor sal_cur is select job_title from jobs where min_salary > 10000;
+    
+begin
+    for i in sal_cur
+    loop
+        dbms_output.put_line(i.job_title);
+    end loop;
+    close sal_cur;
+end;
+/
+
+#Program 17
+-- Cursor example 4
+DECLARE
+    v_job_title VARCHAR2(50);
+    cursor sal_cur(v_min_salary number) is select job_title from jobs where min_salary > v_min_salary;
+    v_min_salary_range number := &v_min_salary_range;
+    
+begin
+FOR i IN sal_cur(v_min_salary_range) LOOP
+    dbms_output.put_line(i.job_title);
+END LOOP;
+
+CLOSE sal_cur;
+
+end;
+/
+
+
+#Program 18
+-- functions
+create or replace function find_name(employee_id number) return varchar2 is
+
+      v_employee_id number :=employee_id;
+      v_first_name varchar2(40);
+    BEGIN
+    
+    SELECT first_name into v_first_name from employees where employee_id=v_employee_id;
+    return 'Employee First Name: '||v_first_name;
+    
+    
+    END;
+    
+
+BEGIN
+    
+    dbms_output.put_line(find_name(104));
+END;
+
+
