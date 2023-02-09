@@ -1,0 +1,291 @@
+EX.NO.01 & 02
+	    CREATING A TABLE & INSERTING 5 ENTRIES
+SYNTAX----- Create table <table name> (column_name_date_type(size));
+	    describe the table (desc <table name>);
+            display the table  (select * from <table name>);
+
+
+
+EX.NO.03 
+
+select*from EMPLOYEE88
+changing the data type of the column 
+
+for single column 
+
+in student table, to chnge the dept_no column datatype from number to varchar2
+
+create table <students> (dept_no number(3), student_name varchar(10),addr varchar(20),mob_no number(10));
+
+alter table <students> modify dept_no varchar2(9);---- 1st step
+
+insert into <students> values ---- 2nd step 
+
+
+
+
+
+EX.NO:5 ADDING COLUMN for single column, in students table add a column called GRADE varchar2(1)
+
+syntax--------- alter table <name> add <colm name datatpe(size)>
+		alter table students add GRADE varchar2(1);
+
+
+
+
+
+
+EX.NO.4  changing the data type for multiple column
+
+CREATE TABLE
+
+
+SYNTAX----alter table <table name> modify (column name1 new datatype(size),column name2 new datatype (size),......)
+	  alter table <name> modify (student_name number(5), add number(12), mob_no varchar2(20));
+
+
+
+
+
+EX.NO.6
+
+for multiple column 
+in students table, to add multiple columns called DOB date, SEX varchar2(1), last_name varchar2(20);
+
+CREATE TABLE 
+
+SYNTAX------ alter table <name> ADD (column name_1 data type (size), column name_2 data type (size)....)
+       i.e., alter table STUDENT87 ADD (DOB date, SEX varchar2 (1), last_name varchar2(20));
+
+	desc STUDENT87;
+
+
+
+ 
+
+EX.NO.7 
+  
+DROPPING/REMOVING column(s) from the table for a single column
+
+in students table, to drop a column last_name;
+
+SYNTAX-----alter table <table name> drop column <column name>
+	   alter table student92 drop column last_name;
+
+	desc student91
+
+
+
+
+
+EX.NO.8
+   DROPPING/REMOVING multiple columns in a table 
+   in student table, to drop a column GRADE, ADDR
+
+SYNTAX-----     alter table <table name> drop column (column name_1, column name_2,....);
+		alter table STUDENT93 drop (grade,addr);
+	
+	desc STUDENT93 
+
+
+
+
+
+
+EX.NO.9
+   DROPPING THE TABLE
+	drop command can be used to drop the DATABASE objects like tables,views, synonyms, sequences & indexes....etc.
+
+   SYNTAX----- drop table <table naME>
+               drop table students;
+    
+	desc students 
+       it shows that "object does not exist".
+
+
+constraints are a part of the table defn. that limits the value entered into its columns.
+
+
+
+
+EX.NO.10
+    PRIMARY KEY CONSTRAINT
+  create table employee88 (empno number (4)primary keym,ename varchar2(20), job varchar2(20),salary number(5), deptno number(2));
+
+
+
+
+
+EX.NO.11 A 
+   REFERENCE OR FOREIGN KEY
+  
+	a foreign key is a combination of columns with values based on primary key values from another table.
+       
+	create table EMP88(empno number(4) primary key,ename varchar2(20),eadd varchar2(20));
+	insert into  EMP88 values (&empno,'&ename','&eadd');
+	/ (enter some 5 records using the'/')
+
+        now the master table i.e.,primary key is created, now for daughter table(foreign key), its as follows
+	create table DEPT88 (deptno number(4),sal number(7),empno number(4) constraint emp_fk references EMP88(empno));
+	insert into  DEPT88 (&deptno,'&sal','&empno');
+	/ (enter 5 records)
+	/ / / /
+	select * from EMP88; & select * from DEPT88;
+
+
+
+ EX.NO.11B
+      create table coll_off88 (deptno number(4) primary key, sname varchar2(20),sadd varchar2(20));
+	insert into coll_off88 values (&deptno,'&sname','&sadd');
+	////
+	create table COE88 (deptname varchar2(15), marks number(7), deptno number(4) constraint coll_fk references coll_off88(deptno));
+	insert into COE88 values ('&deptname',&marks,&deptno);
+	/////
+	select * from coll_off88; & select * from COE88;
+
+
+EX.NO.11C
+	CHECKING THE CONSTRAINT
+	create table EMPE88(empno number(4),ename varchar2(20),sal number(5),constraint emp_sal_ck check (sal>25000 and sal <90000));
+	insert into EMPE88 values(&empno,'&empname',&sal);
+
+
+
+
+
+EX.NO.11D
+	CREATING AN NON EMPTY ENTRY(NULL)CONSTRAINT 
+	create table emp888 (empno number(4),ename varchar2(10) constraint ename_nn not null,sal number(6));
+	insert into emp888 values (&empno,'&ename',&sal);
+
+
+
+
+
+EX.NO.12
+    VIEWING THE CONSTRAINTS
+    
+	SELECT * FROM USER_CONSTRAINTS;
+	SELECT * FROM TAB;  (all ur past created tables will be showed)
+
+
+
+
+EX.NO.13
+   RENAMING THE TABLES from old to new 
+   
+	rename <old tablename> to <new name>;
+	desc <old table name>
+	object doesn't exist 
+
+
+
+
+EX.NO.14
+	ENTERING MULTIPLE RECORDS IN TABLE
+	select * from kottayam;
+	insert into kottayam values (&dept_no,'&student_name','&addr',&mob_no) add& for no and ' for varchar
+	/
+	enter the values, it displays every column name 
+	/
+	select * from kottayam;
+	
+
+
+
+EX.NO.15 
+	USING NULL key words to explicitly insert NULL values
+	desc A TABLE
+	select * from <name>;
+	insert into <name> values (26,'tom',null,null);
+
+
+
+
+ex.no.16
+	TRANSACTION CONTROL LANGUAGE
+	SET autocommit ON;
+
+
+
+
+EX.NO.17
+	DELETING A SINGLE RECORD
+	delete students_new where dept_no = 65;
+
+
+
+
+EX.NO.18
+	ADDING VALUES FOR ONLY A FEW FIELDS
+	insert into students_new(student_name,addr)values ('borgia','hills');
+
+
+
+
+EX.NO.19
+	UPDATING A SINGLE COLUMN
+	update students_new set addr='try' where student_name='deepak';
+	update students_new set mob_no=96598741 where student_name='borgia';
+
+
+
+
+EX.NO.20
+	UPDATING A MULTIPLE COLUMN
+	select * from students_new;
+	  update students_new set mob_no=9895969392,addr='trichy' where student_name='borgia';
+	select * from students_new;
+
+
+
+
+EX.NO.21
+	OPERATOR & BUILT_IN FUNCTIONS
+	 create table rna88 (empno number(10),ename varchar2(10),sal number(8),dob date,comm number(6));
+	 insert values via multiple records
+	  insert into rna88 values (&empno,'&ename',&sal,'&dob',&comm);
+	
+	select * from rna88 where sal+comm > 44000;
+	
+	select * from rna88 where comm > sal * 10/100; 		      (10% of salary),(9/100 for 9% of salary)
+	
+	select * from rna88 where ename='agatha' or ename='hercule';  (displays only the particular ename)
+	
+	SELECT * from rna88 where ename like 'a%';   		      (enames starting with a)
+
+
+
+	
+
+EX.NO.22	 
+	select avg (sal) from rna88;         			       average salary 
+	
+	Select count(*) from rna88;				       * means all 
+	
+	select max(sal) from rna88;		
+	
+	select min(sal) from rna88;
+	
+	select sum(sal) from rna88;					sum of all the salaries
+
+
+
+
+EX.NO.23
+	SELECT length ('be an encourager')"length" from dual;           denotes the no of characters in the string(');includes space too
+	
+	select abs(-7) FROM dual; 					absolute value of the gn no (-ve to +ve like modulus)					                                      
+	
+	select ceil(18.1) from dual;					rounding off ascendingly					
+
+	select floor(18.1) from dual;					rounding off descendingly					
+	
+	select mod(23,5) from dual;					the remainder of a given divisor
+	
+	select power(5,2) from dual;					power of 5
+
+	select round(17.23) from dual;					approximate value of the gn no
+
+	select sqrt(90) from dual;					square root of the given number
+	
