@@ -75,3 +75,41 @@ _       Any single character
 -- NOT
 
     SELECT * FROM employee WHERE job_id NOT IN ('IT_PROG', 'AD_VP');
+
+
+--Group Functions
+SUM
+AVG
+MEDIAN
+MIN
+MAX
+COUNT
+
+SELECT SUM(salary) from employees;
+SELECT SUM(salary) AS "Total Salary" from employees;
+
+SELECT AVG(salary) from employees;
+
+SELECT MIN(salary), MAX(salary) from employees;
+
+SELECT COUNT(manager_id) FROM employees;
+SELECT COUNT(*) FROM employees;
+
+SELECT COUNT(DISTINCT job_id) FROM employees;
+
+
+--Datatypes can be used for group functions
+            Numeric Data        Character Data      Date Data
+AVG             X
+SUM             X
+MIN             X                     X                 X
+MAX             X                     X                 X
+COUNT           X                     X                 X
+
+
+
+
+
+
+
+
