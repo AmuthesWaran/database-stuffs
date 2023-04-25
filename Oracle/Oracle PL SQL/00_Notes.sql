@@ -107,6 +107,15 @@ MAX             X                     X                 X
 COUNT           X                     X                 X
 
 
+-- Group Data
+SELECT job_id, AVG(salary) FROM employees GROUP BY job_id;
+
+SELECT job_id, AVG(salary) FROM employees WHERE salary > 5000 GROUP BY job_id;
+
+
+SELECT job_id, AVG(salary) FROM employees GROUP BY job_id ORDER BY AVG(salary);
+
+SELECT job_id, AVG(salary) FROM employees GROUP BY job_id ORDER BY AVG(salary) DESC;
 
 
 
