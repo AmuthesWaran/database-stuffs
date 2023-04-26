@@ -118,6 +118,36 @@ SELECT job_id, AVG(salary) FROM employees GROUP BY job_id ORDER BY AVG(salary);
 SELECT job_id, AVG(salary) FROM employees GROUP BY job_id ORDER BY AVG(salary) DESC;
 
 
+-- Combining Data using joins
+Types of Joins
+    *Inner Join
+    *Outer Join
+    *Cross Join
+    *Self Join
+
+--Inner Join
+
+--select columns to output and include table names
+--in the from, list the relevant tables separated by INNER JOIN
+--Use ON to define the column to join on
+-- other SQL clauses can be added
+
+SELECT employees.first_name, departments.department_name 
+FROM employees INNER JOIN departments 
+ON employees.department_id = departments.department_id;
+
+SELECT employees.first_name, departments.department_name 
+FROM employees INNER JOIN departments 
+ON employees.department_id = departments.department_id 
+where departments.department_name = 'IT';
+
+--to improve the readability use alias after the FROM clause
+SELECT e.first_name, d.department_name 
+FROM employees e INNER JOIN departments d
+ON e.department_id = d.department_id 
+where d.department_name = 'IT';
+
+
 
 
 
