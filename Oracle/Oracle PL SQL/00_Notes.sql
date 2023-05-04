@@ -148,6 +148,27 @@ ON e.department_id = d.department_id
 where d.department_name = 'IT';
 
 
+--Joins
+--left outer join
+SELECT t.TrackId, t.Name, i.InvoiceId, i.Quantity
+    FROM Track t LEFT OUTER JOIN InvoiceLine i 
+    USING (TrackId)
+
+--right outer join
+SELECT c.CustomerID, c.SupportRepId, e.FirstName, e.LastName, e.Title
+    FROM Customer c RIGHT OUTER JOIN Employee e
+    ON c.SupportRepId = EmployeeId
+
+--full join
+SELECT c.CustomerID, c.SupportRepId, e.FirstName, e.LastName, e.Title
+    FROM Customer c FULL OUTER JOIN Employee e
+    ON c.SupportRepId = EmployeeId
+
+--cross join
+-- Select first and last names
+SELECT e.firstname || ' ' || e.lastname AS "Employee",
+       c.firstname || ' ' || c.lastname AS "Customer"
+FROM Employee e Cross Join Customer c
 
 
 
