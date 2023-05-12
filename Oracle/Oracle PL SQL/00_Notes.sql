@@ -171,5 +171,28 @@ SELECT e.firstname || ' ' || e.lastname AS "Employee",
 FROM Employee e Cross Join Customer c
 
 
+--SET Operators
+Union       -   All rows with no duplicates
+Union All   -   All rows with duplicates
+Intersect   -   Rows outputted by both the queries
+Minus       -   Distinct rows in 1st query that are not in the 2nd
 
 
+--Query Processing Order
+5 -     SELECT BillingCountry, AVG(Total) > 100 As average
+1 -     FROM invoice
+2 -     WHERE BillingCountry <> 'Paris'
+3 -     GROUP BY BillingCountry
+4 -     HAVING AVG(Total) > 100
+6 -     ORDER BY average DESC
+
+
+Query order of execution 
+1. FROM and JOIN s: determine which data is being queried  
+2. WHERE : filter individual rows 
+3. GROUP BY : group rows  
+4. HAVING : filter groups  
+5. SELECT : select columns and apply functions on columns 
+6. DISTINCT : remove duplicates  
+7. UNION , UNION ALL , INTERSECT , MINUS : apply set operators 
+8. ORDER BY : order rows 
