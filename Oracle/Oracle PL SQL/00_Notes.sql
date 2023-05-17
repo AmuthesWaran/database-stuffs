@@ -195,4 +195,31 @@ Query order of execution
 5. SELECT : select columns and apply functions on columns 
 6. DISTINCT : remove duplicates  
 7. UNION , UNION ALL , INTERSECT , MINUS : apply set operators 
-8. ORDER BY : order rows 
+8. ORDER BY : order rows
+
+-- Customizing output
+--Character Function 
+
+--UPPER
+SELECT UPPER(first_name) FROM employees;
+
+--LOWER
+SELECT LOWER(first_name) FROM employees;
+
+--SUBSTRING
+SELECT SUBSTR(JOB_ID,1,2) FROM employees;
+
+--CONCAT
+SELECT CONCAT(CONCAT(first_name ,' '), last_name) FROM employees;
+
+--LENGTH
+
+--REPLACE
+
+
+--Numeric Function 
+--ROUND
+--TRUNC
+--MOD
+
+
