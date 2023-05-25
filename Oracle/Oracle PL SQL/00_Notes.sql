@@ -213,13 +213,18 @@ SELECT SUBSTR(JOB_ID,1,2) FROM employees;
 SELECT CONCAT(CONCAT(first_name ,' '), last_name) FROM employees;
 
 --LENGTH
-
+SELECT LENGTH(first_name) from employees;
 --REPLACE
-
+SELECT REPLACE(hello, 'l', '*')
 
 --Numeric Function 
---ROUND
---TRUNC
---MOD
 
+--ROUND
+SELECT ROUND(salary, 1) as Round0, ROUND(salary, 0) AS Whole from employees;
+
+--TRUNC
+SELECT TRUNC(salary, 1) AS trunc1 FROM employees;
+
+--MOD
+SELECT MOD(14, 4) --returns a remainder of the division
 
