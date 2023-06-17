@@ -228,3 +228,25 @@ SELECT TRUNC(salary, 1) AS trunc1 FROM employees;
 --MOD
 SELECT MOD(14, 4) --returns a remainder of the division
 
+-- Handling null
+SELECT * FROM employees where last_name is NULL;
+
+SELECT * FROM employees where last_name is NOT NULL;
+
+SELECT NVL(HireDate, '11/19/2004') FROM Employee;
+
+-- NULLIF(x, y): Compares x and y, returns
+    -- NULL if x = y
+    -- x if they are not equal
+
+-- COALESCE: returns first non-null value in a list
+SELECT CustomerId, COALESCE(phone, email, fax) as ContactMethod FROM Customer
+
+-- Using conversion functions
+    -- Implicit data type conversion
+    -- Explicit data type conversion
+
+
+-- TO_CHAR()
+-- TO_NUM()
+-- TO_DATE()
