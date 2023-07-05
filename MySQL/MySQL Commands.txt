@@ -1,0 +1,95 @@
+---To check whether SQL is Running in windows
+Run command
+services.msc
+
+
+To show all the databases:
+SHOW DATABASES;
+
+To Create a new database:
+CREATE DATABASE <db name>;
+
+To Switch to a particular database:
+USE <db name>;
+
+To clear a command window in windows:
+\! cls
+
+To create a table:
+CREATE TABLE tablename
+	(
+		empid INT(5),
+		empname VARCHAR(60),
+		salary INT(7)
+	);
+
+To view the list of created tables in a database:
+SHOW TABLES;
+
+Description of a table:
+DESC <name of the tables>;
+
+To insert a new record to a table:
+	INSERT INTO <tablename>
+	(col1 name, col2 name, col3 name)
+	VALUES
+	(123, 'Amutheswaran', 1234567);
+	
+To insert all the records to a table:
+	INSERT INTO <tablename>
+	VALUES
+	(123, 'Amutheswaran', 1234567);
+
+To see all the records
+	SELECT * FROM <tablename>
+	
+To pick all the details of a particular record
+	SELECT * FROM <tablename> WHERE <condition>
+	
+To get the average of the fields
+	SELECT AVG(<col name>) FROM <tablename>
+	
+To get the sum of the fields
+	SELECT SUM(<col name>) FROM <tablename>
+
+To get the MAX of the fields
+	SELECT MAX(<col name>) FROM <tablename>
+	
+To get the MIN of the fields
+	SELECT MIN(<col name>) FROM <tablename>
+	
+To delete a table
+	DROP TABLE <tablename>;
+
+To Rename a column
+	ALTER TABLE <tablename> RENAME COLUMN <old column name> TO <new column name>;
+
+To Add a column
+	ALTER TABLE <tablename> ADD city VARCHAR(30)
+	
+To Remove a column
+	ALTER TABLE <tablename> DROP <column name>
+	
+To Add a Constraint to a column
+	ALTER TABLE <table name> MODIFY name VARCHAR(35) NOT NULL
+	CREATE TABLE <table name> (sid INT, sname VARCHAR(30), age INT, CONSTRAINT chk_age CHECK (age>18));
+	
+	ALTER TABLE <table name> ADD CHECK (sid > 10);
+	ALTER TABLE <table name> ADD CONSTRAINT chk_sid CHECK (sid > 10 AND sname = 'Janaki');
+	ALTER TABLE <table name> DROP CONSTRAINT chk_sid;
+
+ORDER BY
+	SELECT * from <table name> ORDER BY <column name>;
+	SELECT * from <table name> ORDER BY <column name> desc;
+
+Like
+	SELECT * FROM <table name> WHERE city like '%i'  --> entries ends with i 
+	
+To Update a record in a table
+	UPDATE employee SET salary = 1010101010 WHERE empid = 123;
+
+To delete a record 
+	DELETE FROM <tablename> WHERE empid = 11;
+	DELETE FROM <tablename>; --> Delete all the records in a table
+
+
