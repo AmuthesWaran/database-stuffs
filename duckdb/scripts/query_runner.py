@@ -9,9 +9,8 @@ DB_PATH = ROOT / "db" / "dump.duckdb"
 conn = duckdb.connect(str(DB_PATH))
 
 query = """
-SELECT *
-FROM diagnoses
-LIMIT 10
+SELECT * FROM
+claims
 """
 
 df = conn.execute(query).df()

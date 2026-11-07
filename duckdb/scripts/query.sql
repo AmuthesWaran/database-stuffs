@@ -54,3 +54,21 @@ WHERE (claim_amount - paid_amount) > 0
 ORDER BY outstanding_amount DESC
 
 -- For each patient, return only their most recent diagnosis.
+WITH ranked_diagnoses AS (
+    SELECT
+    *,
+    ROW_NUMBER() OVER (
+        PARTITION BY patient_id
+        ORDER BY diagnosis_date DESC
+    ) AS rn
+FROM diagnoses
+)
+SELECT
+    patient_id,
+    diagnosis_id,
+    icd_code,
+    diagnosis_date
+FROM ranked_diagnoses
+WHERE rn = 1;
+
+-- Find the patient with the second highest total claim amount.
